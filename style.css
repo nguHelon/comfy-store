@@ -125,6 +125,19 @@
   justify-content: center; */
 }
 
+.bag-section .bag-content::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.bag-section .bag-content::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.bag-section .bag-content::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: rgb(255, 213, 0);
+}
+
 .bag-content .content {
   width: 100%;
   height: 80px;
