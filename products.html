@@ -17,13 +17,13 @@
     <div class="header">
         <h1>comfy <span>Store</span></h1>
         <ul>
-            <a href="">
+            <a href="index.html">
                 <li>Home</li>
             </a>
-            <a href="">
+            <a href="products.html">
                 <li>Products</li>
             </a>
-            <a href="">
+            <a href="about.html">
                 <li>About</li>
             </a>
         </ul>
@@ -37,7 +37,7 @@
         <div class="bag-section">
             <h1>Your Bag</h1>
             <div class="bag-content">
-                <div class="content">
+                <!-- <div class="content">
                     <div class="img">
                         <img src="images/background4.jpg" alt="">
                     </div>
@@ -57,28 +57,8 @@
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                     </div>
-                </div>
-                <div class="content">
-                    <div class="img">
-                        <img src="images/background4.jpg" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="price-name">
-                            <p>Item name Here</p>
-                            <div class="price">
-                                <span>$9.99</span>
-                            </div>
-                            <button>remove</button>
-                        </div>
-                        <div class="quantity">
-                            <i class="fa-solid fa-angle-up"></i>
-                            <div class="number">
-                                <span>1</span>
-                            </div>
-                            <i class="fa-solid fa-angle-down"></i>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
+                <!-- cart Item goes here -->
             </div>
         </div>
         <div class="total-section">
@@ -91,13 +71,13 @@
         <h1>Shop Things for your comfort</h1>
         <div class="products-div">
             <div class="filters">
-                <input type="text" placeholder="Nothing yet" disabled>
-                <ul>
-                    <li class="all">All</li>
-                    <li class="Ikea">Ikea</li>
-                    <li class="Marcos">Marcos</li>
-                    <li class="caressa">caressa</li>
-                    <li class="Liddy">Liddy</li>
+                <input type="text" placeholder="search by name" id="search">
+                <ul id="filters">
+                    <li data-category="all">All</li>
+                    <li data-category="ikea">Ikea</li>
+                    <li data-category="marcos">Marcos</li>
+                    <li data-category="caressa">caressa</li>
+                    <li data-category="liddy">Liddy</li>
                 </ul>
             </div>
             <div class="products" id="products-div">
