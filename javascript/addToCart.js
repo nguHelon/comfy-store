@@ -1,7 +1,5 @@
 import { removeFromStorage } from "./localstorage.js";
 
-const cartItems = [];
-
 function addToCart(array, id) {
     let item = array.filter((element) => {
         if (element.id === id) {
@@ -9,7 +7,7 @@ function addToCart(array, id) {
         }
     });
 
-    let cartItemsDiv = document.querySelector(".bag-content")
+    let cartItemsDiv = document.querySelector(".bag-content");
     let product = document.createElement('div');
     product.setAttribute("class", "content");
     product.setAttribute("data-id", `${item[0].id}`);
@@ -52,4 +50,3 @@ function addToCart(array, id) {
 };
 
 export default addToCart;
-export { cartItems };

@@ -1,5 +1,3 @@
-
-
 function displayProducts(array) {
     let newArray = array.map((items) => {
         return `
@@ -22,7 +20,7 @@ function displayProducts(array) {
     return newArray;
 }
 
-export { displayProducts };
+export default displayProducts;
 
 
 // console.log(products);

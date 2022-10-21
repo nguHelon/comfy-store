@@ -1,6 +1,5 @@
-import { cartItems } from "./addToCart.js";
-
 function addToLocalStorage(array, id) {
+    let cartItems = (localStorage.getItem("list") == null) ? [] : JSON.parse(localStorage.getItem("list"));
     let newArray = array.filter((item) => {
         if (item.id === id) {
             return item;

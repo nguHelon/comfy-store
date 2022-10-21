@@ -1,4 +1,8 @@
 import { productsArray } from "./store.js";
+import { addToLocalStorage } from "./localstorage.js";
+import addToCart from "./addToCart.js";
+import "./toggleCart.js";
+import "./getFromStorage.js";
 
 // HTML elements;
 const img = document.querySelector("#img");
@@ -18,8 +22,15 @@ let selectedItem = productsArray.filter((item) => {
     }
 });
 
+// setting the html elements' contents with the item data.
 img.setAttribute("src", `${selectedItem[0].img}`);
 itemName.textContent = `${selectedItem[0].name}`;
 category.textContent = `${selectedItem[0].category}`;
 price.textContent = `${selectedItem[0].price}`;
 description.textContent = `${selectedItem[0].description}`;
+
+// set the cart bag with the items from the local storage;
+addButton.addEventListener("click", (e) => {
+    addToCart(productsArray, id);
+    addToLocalStorage(productsArray, id);
+});
