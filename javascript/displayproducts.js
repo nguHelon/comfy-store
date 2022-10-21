@@ -4,7 +4,9 @@ function displayProducts(array) {
     let newArray = array.map((items) => {
         return `
         <div class="product" data-id="${items.id}">
-            <img src="${items.img}" alt="${items.name}">
+            <a href="productItem.html?id=${items.id}">
+                <img src="${items.img}" alt="${items.name}">
+            </a>
             <div class="info">
                 <div class="price">
                     <p>${items.name}</p>

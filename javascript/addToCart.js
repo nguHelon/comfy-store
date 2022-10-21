@@ -1,4 +1,6 @@
-// const cartItems = [];
+import { removeFromStorage } from "./localstorage.js";
+
+const cartItems = [];
 
 function addToCart(array, id) {
     let item = array.filter((element) => {
@@ -6,8 +8,6 @@ function addToCart(array, id) {
             return element;
         }
     });
-
-    // cartItems.push(item[0]);
 
     let cartItemsDiv = document.querySelector(".bag-content")
     let product = document.createElement('div');
@@ -24,7 +24,7 @@ function addToCart(array, id) {
                 <div class="price">
                     <span>$${item[0].price}</span>
                 </div>
-                <button>remove</button>
+                <button class="removeFromCart">remove</button>
             </div>
             <div class="quantity">
                 <i class="fa-solid fa-angle-up"></i>
@@ -38,8 +38,18 @@ function addToCart(array, id) {
 
     product.innerHTML = contents;
     cartItemsDiv.appendChild(product);
-    // console.log(cartItems);
-}
+
+    let removeFromCartBtns = product.querySelectorAll(".removeFromCart");
+    removeFromCartBtns.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            let element = e.currentTarget.parentElement.parentElement.parentElement;
+            let buttonid = e.currentTarget.parentElement.parentElement.parentElement.dataset.id;
+            element.style.display = "none";
+            removeFromStorage(buttonid);
+
+        });
+    });
+};
 
 export default addToCart;
-// export { cartItems };
+export { cartItems };

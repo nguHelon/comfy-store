@@ -3,7 +3,7 @@ import { displayProducts } from "./displayproducts.js";
 import "./toggleCart.js";
 import { productsArray } from "./store.js";
 import addToCart from "./addToCart.js";
-// import { cartItems } from "./addToCart.js";
+import { addToLocalStorage, removeFromStorage } from "./localstorage.js"
 
 
 // html elements here
@@ -53,5 +53,6 @@ addCartBtns.forEach((button) => {
         let id = e.currentTarget.parentElement.parentElement.dataset.id;
 
         addToCart(productsArray, id);
-    })
-})
+        addToLocalStorage(productsArray, id);
+    });
+});
