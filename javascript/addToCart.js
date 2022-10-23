@@ -25,11 +25,11 @@ function addToCart(array, id) {
                 <button class="removeFromCart">remove</button>
             </div>
             <div class="quantity">
-                <i class="fa-solid fa-angle-up"></i>
+                <i class="fa-solid fa-angle-up incPrice"></i>
                 <div class="number">
-                    <span>1</span>
+                    <span>${Number(item.quantity)}</span>
                 </div>
-                <i class="fa-solid fa-angle-down"></i>
+                <i class="fa-solid fa-angle-down decPrice"></i>
             </div>
         </div>
     `;

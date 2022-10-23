@@ -2,8 +2,8 @@
 import displayProducts from "./displayproducts.js";
 import { productsArray } from "./store.js";
 import addToCart from "./addToCart.js";
-import { addToLocalStorage, removeFromStorage } from "./localstorage.js"
-import "./getFromStorage.js"
+import { addToLocalStorage } from "./localstorage.js";
+import "./getFromStorage.js";
 import "./toggleCart.js";
 
 

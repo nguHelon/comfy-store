@@ -202,6 +202,7 @@
 
 .bag-content .content .info .quantity i {
   color: rgb(255, 213, 0);
+  cursor: pointer;
 }
 
 .bag-content .content .info .number {

@@ -26,7 +26,7 @@ let selectedItem = productsArray.filter((item) => {
 img.setAttribute("src", `${selectedItem[0].img}`);
 itemName.textContent = `${selectedItem[0].name}`;
 category.textContent = `${selectedItem[0].category}`;
-price.textContent = `${selectedItem[0].price}`;
+price.textContent = `$${selectedItem[0].price}`;
 description.textContent = `${selectedItem[0].description}`;
 
 // set the cart bag with the items from the local storage;
