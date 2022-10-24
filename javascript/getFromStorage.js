@@ -1,4 +1,4 @@
-import { removeFromStorage } from "./localstorage.js";
+import { incDecPrice, removeElement } from "./productAction.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     let cartItemsDiv = document.querySelector(".bag-content");
@@ -37,35 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
     quantityBtns.forEach((button) => {
         button.addEventListener("click", (e) => {
             let productID = e.currentTarget.parentElement.parentElement.parentElement.dataset.id;
-            let products = JSON.parse(localStorage.getItem("list"));
-
-            if (button.classList.contains("incPrice")) {
-                let newProducts = products.map((item) => {
-                    if (item.id == productID) {
-                        let quantity = Number(item.quantity)
-                        let newQuantity = quantity++;
-                        item.quantity = newQuantity.toString();
-                        return item;
-                    } else {
-                        return item;
-                    }
-                });
-
-                localStorage.setItem("list", JSON.stringify(newProducts));
-                console.log(newProducts);
-            } else if (button.classList.contains("decPrice")) {
-                let newProducts = products.map((item) => {
-                    if (item.id === productID) {
-                        let quantity = Number(item.quantity--);
-                        item.quantity = quantity.toString();
-                        return item;
-                    } else {
-                        return item;
-                    }
-                });
-
-                localStorage.setItem("list", JSON.stringify(newProducts));
-            }
+            let numberDiv = e.currentTarget.parentElement;
+            let number = numberDiv.querySelector(".number span");
+            incDecPrice(productID, button, number);
         });
     });
 
@@ -74,9 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
             let element = e.currentTarget.parentElement.parentElement.parentElement;
             let buttonid = e.currentTarget.parentElement.parentElement.parentElement.dataset.id;
-            element.style.display = "none";
-            removeFromStorage(buttonid);
-
+            removeElement(element, buttonid);
         });
     });
 

@@ -1,4 +1,4 @@
-import { removeFromStorage } from "./localstorage.js";
+import { incDecPrice, removeElement } from "./productAction.js";
 
 function addToCart(array, id) {
     let item = array.filter((element) => {
@@ -27,7 +27,7 @@ function addToCart(array, id) {
             <div class="quantity">
                 <i class="fa-solid fa-angle-up incPrice"></i>
                 <div class="number">
-                    <span>${Number(item.quantity)}</span>
+                    <span>${Number(item[0].quantity)}</span>
                 </div>
                 <i class="fa-solid fa-angle-down decPrice"></i>
             </div>
@@ -35,16 +35,35 @@ function addToCart(array, id) {
     `;
 
     product.innerHTML = contents;
-    cartItemsDiv.appendChild(product);
+    // if product is already appended increase the price else append it and add to localstorage;
+    let itemFromStorage = (localStorage.getItem("list")) ? [] : JSON.parse(localStorage.getItem("list"));
+    itemFromStorage.forEach((item) => {
+        if (item.id === id) {
+            let quantity = Number(item.quantity);
+            let newQuantity = quantity + 1;
+            item.quantity = newQuantity.toString();
+            number.textContent = newQuantity.toString();
+        } else if (itemFromStorage.length == 0) {
+            cartItemsDiv.appendChild(product);
+        }
+    })
+
+    let quantityBtns = cartItemsDiv.querySelectorAll(".content .quantity i");
+    quantityBtns.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            let productID = e.currentTarget.parentElement.parentElement.parentElement.dataset.id;
+            let numberDiv = e.currentTarget.parentElement;
+            let number = numberDiv.querySelector(".number span");
+            incDecPrice(productID, button, number);
+        });
+    });
 
     let removeFromCartBtns = product.querySelectorAll(".removeFromCart");
     removeFromCartBtns.forEach((button) => {
         button.addEventListener("click", (e) => {
             let element = e.currentTarget.parentElement.parentElement.parentElement;
             let buttonid = e.currentTarget.parentElement.parentElement.parentElement.dataset.id;
-            element.style.display = "none";
-            removeFromStorage(buttonid);
-
+            removeElement(element, buttonid);
         });
     });
 };
