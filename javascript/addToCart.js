@@ -36,7 +36,7 @@ function addToCart(array, id) {
 
     product.innerHTML = contents;
     // if product is already appended increase the price else append it and add to localstorage;
-    let itemFromStorage = (localStorage.getItem("list")) ? [] : JSON.parse(localStorage.getItem("list"));
+    let itemFromStorage = (localStorage.getItem("list") == null) ? [] : JSON.parse(localStorage.getItem("list"));
     itemFromStorage.forEach((item) => {
         if (item.id === id) {
             let quantity = Number(item.quantity);
