@@ -32,5 +32,5 @@ description.textContent = `${selectedItem[0].description}`;
 // set the cart bag with the items from the local storage;
 addButton.addEventListener("click", (e) => {
     addToCart(productsArray, id);
-    addToLocalStorage(productsArray, id);
+    // addToLocalStorage(productsArray, id);
 });

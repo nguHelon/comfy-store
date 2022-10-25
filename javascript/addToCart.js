@@ -1,4 +1,5 @@
 import { incDecPrice, removeElement } from "./productAction.js";
+import { addToLocalStorage } from "./localstorage.js"
 
 function addToCart(array, id) {
     let item = array.filter((element) => {
@@ -36,17 +37,38 @@ function addToCart(array, id) {
 
     product.innerHTML = contents;
     // if product is already appended increase the price else append it and add to localstorage;
+    let numbers = cartItemsDiv.querySelectorAll(".content .quantity .number span");
+    cartItemsDiv.appendChild(product);
+    addToLocalStorage(array, id);
     let itemFromStorage = (localStorage.getItem("list") == null) ? [] : JSON.parse(localStorage.getItem("list"));
+
     itemFromStorage.forEach((item) => {
-        if (item.id === id) {
-            let quantity = Number(item.quantity);
-            let newQuantity = quantity + 1;
-            item.quantity = newQuantity.toString();
-            number.textContent = newQuantity.toString();
-        } else if (itemFromStorage.length == 0) {
-            cartItemsDiv.appendChild(product);
-        }
-    })
+        console.log(item.name);
+        //     if (itemFromStorage.length == 0 || item.id !== id) {
+        //         cartItemsDiv.appendChild(product);
+        //         addToLocalStorage(array, id);
+        //     } else if (item.id == id) {
+        //         let newProducts = itemFromStorage.map((product) => {
+        //             let quantity = Number(product.quantity);
+        //             let newQuantity = quantity + 1;
+        //             product.quantity = newQuantity.toString();
+        //             numbers.forEach((number) => {
+        //                 if (product.id === id) {
+        //                     number.textContent = newQuantity.toString();
+        //                 }
+        //             })
+        //             return product;
+        //         });
+
+        //         itemFromStorage.forEach((item) => {
+        //             if (item.id == id) {
+        //                 localStorage.setItem("list", JSON.stringify(newProducts));
+        //             }
+        //         })
+        //     }
+
+    });
+
 
     let quantityBtns = cartItemsDiv.querySelectorAll(".content .quantity i");
     quantityBtns.forEach((button) => {

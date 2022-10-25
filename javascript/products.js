@@ -56,6 +56,6 @@ addCartBtns.forEach((button) => {
         let id = e.currentTarget.parentElement.parentElement.dataset.id;
 
         addToCart(productsArray, id);
-        addToLocalStorage(productsArray, id);
+        // addToLocalStorage(productsArray, id);
     });
 });
