@@ -28,7 +28,7 @@ function addToCart(array, id) {
             <div class="quantity">
                 <i class="fa-solid fa-angle-up incPrice"></i>
                 <div class="number">
-                    <span>${Number(item[0].quantity)}</span>
+                    <span data-id="${item[0].id}">${Number(item[0].quantity)}</span>
                 </div>
                 <i class="fa-solid fa-angle-down decPrice"></i>
             </div>
@@ -38,36 +38,90 @@ function addToCart(array, id) {
     product.innerHTML = contents;
     // if product is already appended increase the price else append it and add to localstorage;
     let numbers = cartItemsDiv.querySelectorAll(".content .quantity .number span");
-    cartItemsDiv.appendChild(product);
-    addToLocalStorage(array, id);
     let itemFromStorage = (localStorage.getItem("list") == null) ? [] : JSON.parse(localStorage.getItem("list"));
 
-    itemFromStorage.forEach((item) => {
-        console.log(item.name);
-        //     if (itemFromStorage.length == 0 || item.id !== id) {
+    if (itemFromStorage.length === 0) {
+        cartItemsDiv.appendChild(product);
+        addToLocalStorage(array, id);
+    } else {
+        let itemIds = itemFromStorage.map((item) => {
+            return `${item.id}`;
+        });
+        itemIds = itemIds.join(",");
+        if (itemIds.includes(`${id}`) === false) {
+            console.log(item.id, id);
+            cartItemsDiv.appendChild(product);
+            addToLocalStorage(array, id);
+        } else {
+            let newProducts = itemFromStorage.map((item) => {
+                if (item.id == id) {
+                    let quantity = Number(item.quantity);
+                    let newQuantity = quantity + 1;
+                    item.quantity = newQuantity.toString();
+                    numbers.forEach((number) => {
+                        let numberId = number.dataset.id;
+                        if (numberId === id) {
+                            number.textContent = newQuantity.toString();
+                        }
+                    });
+                    return item;
+                } else {
+                    return item;
+                }
+            });
+
+            console.log(newProducts);
+            localStorage.setItem("list", JSON.stringify(newProducts));
+        }
+        // let newProducts = itemFromStorage.map((item) => {
+        //     if (itemIds.includes(`${id}`) === false) {
+        //         console.log(item.id, id);
         //         cartItemsDiv.appendChild(product);
         //         addToLocalStorage(array, id);
-        //     } else if (item.id == id) {
-        //         let newProducts = itemFromStorage.map((product) => {
-        //             let quantity = Number(product.quantity);
-        //             let newQuantity = quantity + 1;
-        //             product.quantity = newQuantity.toString();
-        //             numbers.forEach((number) => {
-        //                 if (product.id === id) {
-        //                     number.textContent = newQuantity.toString();
-        //                 }
-        //             })
-        //             return product;
-        //         });
-
-        //         itemFromStorage.forEach((item) => {
-        //             if (item.id == id) {
-        //                 localStorage.setItem("list", JSON.stringify(newProducts));
+        //         return item;
+        //     } else if (item.id === id) {
+        //         let quantity = Number(item.quantity);
+        //         let newQuantity = quantity + 1;
+        //         item.quantity = newQuantity.toString();
+        //         numbers.forEach((number) => {
+        //             if (item.id === id) {
+        //                 number.textContent = newQuantity.toString();
         //             }
-        //         })
+        //         });
+        //         return item;
         //     }
+        // });
 
-    });
+        // console.log(newProducts);
+        // localStorage.setItem("list", JSON.stringify(newProducts));
+    }
+
+
+    // itemFromStorage.forEach((item) => {
+    //     if (itemFromStorage.length == 0 || item.id !== id) {
+    //         cartItemsDiv.appendChild(product);
+    //         addToLocalStorage(array, id);
+    //     } else if (item.id == id) {
+    //         let newProducts = itemFromStorage.map((product) => {
+    //             let quantity = Number(product.quantity);
+    //             let newQuantity = quantity + 1;
+    //             product.quantity = newQuantity.toString();
+    //             numbers.forEach((number) => {
+    //                 if (product.id === id) {
+    //                     number.textContent = newQuantity.toString();
+    //                 }
+    //             })
+    //             return product;
+    //         });
+
+    //         itemFromStorage.forEach((item) => {
+    //             if (item.id == id) {
+    //                 localStorage.setItem("list", JSON.stringify(newProducts));
+    //             }
+    //         })
+    //     }
+
+    // });
 
 
     let quantityBtns = cartItemsDiv.querySelectorAll(".content .quantity i");

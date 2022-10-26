@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     <div class="quantity">
                         <i class="fa-solid fa-angle-up incPrice"></i>
                         <div class="number">
-                            <span>${Number(item.quantity)}</span>
+                            <span data-id="${item.id}">${Number(item.quantity)}</span>
                         </div>
                         <i class="fa-solid fa-angle-down decPrice"></i>
                     </div>
