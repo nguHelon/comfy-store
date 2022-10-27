@@ -1,5 +1,7 @@
 import { incDecPrice, removeElement } from "./productAction.js";
-import { addToLocalStorage } from "./localstorage.js"
+import { addToLocalStorage } from "./localstorage.js";
+import { totalPrice } from "./totalPrice.js";
+import { productsArray } from "./store.js";
 
 function addToCart(array, id) {
     let item = array.filter((element) => {
@@ -49,7 +51,6 @@ function addToCart(array, id) {
         });
         itemIds = itemIds.join(",");
         if (itemIds.includes(`${id}`) === false) {
-            console.log(item.id, id);
             cartItemsDiv.appendChild(product);
             addToLocalStorage(array, id);
         } else {
@@ -70,58 +71,12 @@ function addToCart(array, id) {
                 }
             });
 
-            console.log(newProducts);
             localStorage.setItem("list", JSON.stringify(newProducts));
         }
-        // let newProducts = itemFromStorage.map((item) => {
-        //     if (itemIds.includes(`${id}`) === false) {
-        //         console.log(item.id, id);
-        //         cartItemsDiv.appendChild(product);
-        //         addToLocalStorage(array, id);
-        //         return item;
-        //     } else if (item.id === id) {
-        //         let quantity = Number(item.quantity);
-        //         let newQuantity = quantity + 1;
-        //         item.quantity = newQuantity.toString();
-        //         numbers.forEach((number) => {
-        //             if (item.id === id) {
-        //                 number.textContent = newQuantity.toString();
-        //             }
-        //         });
-        //         return item;
-        //     }
-        // });
-
-        // console.log(newProducts);
-        // localStorage.setItem("list", JSON.stringify(newProducts));
     }
 
-
-    // itemFromStorage.forEach((item) => {
-    //     if (itemFromStorage.length == 0 || item.id !== id) {
-    //         cartItemsDiv.appendChild(product);
-    //         addToLocalStorage(array, id);
-    //     } else if (item.id == id) {
-    //         let newProducts = itemFromStorage.map((product) => {
-    //             let quantity = Number(product.quantity);
-    //             let newQuantity = quantity + 1;
-    //             product.quantity = newQuantity.toString();
-    //             numbers.forEach((number) => {
-    //                 if (product.id === id) {
-    //                     number.textContent = newQuantity.toString();
-    //                 }
-    //             })
-    //             return product;
-    //         });
-
-    //         itemFromStorage.forEach((item) => {
-    //             if (item.id == id) {
-    //                 localStorage.setItem("list", JSON.stringify(newProducts));
-    //             }
-    //         })
-    //     }
-
-    // });
+    totalPrice();
+    console.log(productsArray);
 
 
     let quantityBtns = cartItemsDiv.querySelectorAll(".content .quantity i");

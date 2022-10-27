@@ -1,4 +1,5 @@
 import { incDecPrice, removeElement } from "./productAction.js";
+import { totalPrice } from "./totalPrice.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     let cartItemsDiv = document.querySelector(".bag-content");
@@ -42,6 +43,8 @@ window.addEventListener("DOMContentLoaded", () => {
             incDecPrice(productID, button, number);
         });
     });
+
+    totalPrice();
 
     let removeFromCartBtns = cartItemsDiv.querySelectorAll(".removeFromCart");
     removeFromCartBtns.forEach((button) => {
