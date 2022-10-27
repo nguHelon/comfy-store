@@ -76,7 +76,6 @@ function addToCart(array, id) {
     }
 
     totalPrice();
-    console.log(productsArray);
 
 
     let quantityBtns = cartItemsDiv.querySelectorAll(".content .quantity i");
