@@ -652,7 +652,7 @@
 
 @media screen and (max-width: 450px) {
   .intro {
-    width: 400px;
+    width: 100%;
     padding: 0 5%;
   }
 
@@ -675,5 +675,39 @@
   .item .info {
     flex-basis: 50%;
     padding: 14px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .header .menu {
+    font-size: 18px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+    color: white;
+    font-weight: lighter;
+  }
+
+  .intro h1 {
+    font-size: 30px;
+    width: 100%;
+  }
+
+  .intro p {
+    font-size: 14px;
+  }
+
+  .intro .buttons button {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .header ul .links {
+    flex-basis: 90%;
+  }
+
+  .cart-section {
+    width: 99%;
   }
 }
